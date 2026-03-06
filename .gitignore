@@ -1,0 +1,90 @@
+############################
+# Node / JavaScript
+############################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+############################
+# Build outputs
+############################
+dist/
+build/
+.next/
+out/
+coverage/
+.turbo/
+
+############################
+# Environment & secrets
+############################
+.env
+.env.*.local
+.env.local
+.env.production
+.env.development
+.env.test
+.envrc
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+*.cer
+
+############################
+# Python
+############################
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+############################
+# Logs & runtime files
+############################
+logs/
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+############################
+# OS / Editor / Tools
+############################
+# Cursor / VS Code / JetBrains
+.cursor/
+.vscode/
+.idea/
+
+# General OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Other tools
+.envrc
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache/
+
+############################
+# Project-specific
+############################
+# Local uploads or temp data (uncomment if you add these)
+# uploads/
+# tmp/
+# temp/
+
