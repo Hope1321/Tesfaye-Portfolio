@@ -13,7 +13,11 @@ const contactSchema = new mongoose.Schema(
         message: props => `${props.value} is not a valid email!`
       }
     },
-    message: { type: String, required: true }
+    message: { type: String, required: true },
+    read: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

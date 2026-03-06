@@ -169,7 +169,31 @@ export default function MessagesAdmin() {
                 filteredMessages.map((msg) => (
                   <div
                     key={msg._id}
-                    onClick={() => setSelectedMessage(msg)}
+                    onClick={async () => {
+                      setSelectedMessage(msg);
+                      if (!msg.read) {
+                        const token = localStorage.getItem("token");
+                        const API_URL =
+                          process.env.NEXT_PUBLIC_API_URL ||
+                          "http://localhost:5000/api";
+                        try {
+                          await fetch(`${API_URL}/contact/${msg._id}/read`, {
+                            method: "PATCH",
+                            headers: {
+                              Authorization: `Bearer ${token}`,
+                            },
+                          });
+                          // Optimistically update local state
+                          setMessages((prev) =>
+                            prev.map((m) =>
+                              m._id === msg._id ? { ...m, read: true } : m
+                            )
+                          );
+                        } catch (error) {
+                          console.error("Error marking message as read:", error);
+                        }
+                      }
+                    }}
                     className={`p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors ${
                       selectedMessage?._id === msg._id ? "bg-blue-50" : ""
                     } ${!msg.read ? "bg-blue-50 bg-opacity-30" : ""}`}

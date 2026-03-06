@@ -2,6 +2,7 @@ import Skill from "../models/Skill.js";
 import Project from "../models/Project.js";
 import Experience from "../models/Experience.js";
 import User from "../models/User.js";
+import Contact from "../models/Contact.js";
 
 export const getDashboardSummary = async (req, res) => {
   try {
@@ -9,12 +10,14 @@ export const getDashboardSummary = async (req, res) => {
     const projects = await Project.countDocuments();
     const experiences = await Experience.countDocuments();
     const users = await User.countDocuments();
+    const messages = await Contact.countDocuments();
 
     res.status(200).json({
       skills,
       projects,
       experiences,
       users,
+      messages,
     });
   } catch (error) {
     console.error(error);

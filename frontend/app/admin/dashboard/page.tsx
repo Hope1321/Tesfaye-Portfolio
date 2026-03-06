@@ -24,6 +24,7 @@ interface Summary {
   projects: number;
   experiences: number;
   users: number;
+  messages: number;
 }
 
 interface Activity {
@@ -32,7 +33,7 @@ interface Activity {
   date: string;
 }
 
-const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444"];
+const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#EF4444", "#6366F1"];
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -41,6 +42,7 @@ const DashboardPage = () => {
     projects: 0,
     experiences: 0,
     users: 0,
+    messages: 0,
   });
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
@@ -97,6 +99,7 @@ const DashboardPage = () => {
     { name: "Projects", count: summary.projects },
     { name: "Experiences", count: summary.experiences },
     { name: "Users", count: summary.users },
+    { name: "Messages", count: summary.messages },
   ];
 
   const pieData = [
@@ -104,6 +107,7 @@ const DashboardPage = () => {
     { name: "Projects", value: summary.projects },
     { name: "Experiences", value: summary.experiences },
     { name: "Users", value: summary.users },
+    { name: "Messages", value: summary.messages },
   ];
 
   // Mock trend data for line chart
@@ -170,7 +174,7 @@ const DashboardPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
           <div className="flex items-center justify-between">
             <div>
@@ -232,6 +236,32 @@ const DashboardPage = () => {
             </div>
           </div>
         </div>
+
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-indigo-100 text-sm font-medium uppercase tracking-wide">
+                Messages
+              </p>
+              <p className="text-5xl font-bold mt-3">
+                {summary.messages}
+              </p>
+              <p className="text-indigo-200 text-xs mt-2">
+                Contact form messages
+              </p>
+            </div>
+            <div className="bg-indigo-400 bg-opacity-30 rounded-full p-4">
+              <svg
+                className="w-10 h-10"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M2.94 6.94A2 2 0 014.414 6h11.172a2 2 0 011.475.94l-7.061 4.414a1 1 0 01-1.05 0L2.94 6.94z" />
+                <path d="M18 8.118l-6.569 4.112a3 3 0 01-3.162 0L2 8.118V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Charts Section */}
@@ -240,8 +270,8 @@ const DashboardPage = () => {
         <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-gray-800">Content Overview</h2>
-            <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
-              Total: {summary.skills + summary.projects + summary.experiences + summary.users}
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+              Total: {summary.skills + summary.projects + summary.experiences + summary.users + summary.messages}
             </span>
           </div>
           <ResponsiveContainer width="100%" height={300}>
